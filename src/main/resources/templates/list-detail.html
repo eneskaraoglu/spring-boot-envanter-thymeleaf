@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<title>Employee Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Detay</h3>
+	<hr>
+
+	<table class="table table-bordered table-striped">
+		<thead class="table-dark">
+			<tr>
+				<th>Envanter Kod</th>
+				<th>Envanter Adı</th>
+				<th>Miktar</th>
+				<th>Depo Kodu</th>
+				<th>Depo Adı</th>
+				<th>Bolge</th>
+				<th>Depo Miktar</th>
+				<th>Katalog Kodu</th>
+				<th>Katalog Adı</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="detail : ${details} ">
+			
+				<td th:text="${detail.envanterKodu}" />	
+				<td th:text="${detail.envanterAdi}" />	
+				<td th:text="${detail.envanterMiktar}" />	
+				<td th:text="${detail.depoKod}" />	
+				<td th:text="${detail.depoAdi}" />	
+				<td th:text="${detail.bolge}" />	
+				<td th:text="${detail.depoMiktar}" />	
+				<td th:text="${detail.katalogKodu}" />	
+				<td th:text="${detail.katalogAdi}" />	
+		
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+

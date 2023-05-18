@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.eneskaraoglu.ek.entity.Depo;
+import com.eneskaraoglu.ek.entity.DepoEnvanter;
 import com.eneskaraoglu.ek.entity.Envanter;
 import com.eneskaraoglu.ek.entity.VEnvanterDepo;
 import com.eneskaraoglu.ek.repository.DepoRepository;
@@ -31,8 +34,27 @@ public class EnvanterController {
 	public String listEnvanter(Model theModel) {
 		List<Envanter> result = service.findAll();
 		theModel.addAttribute("envanterler",result);
-		return "list-envanter";
+		return "envanter/list-envanter";
 	}
+	
+	@GetMapping("/addEnvanterForm")
+	public String addEnvanterForm(Model theModel) {
+		Envanter theEnvater = new Envanter();
+		theModel.addAttribute("envanter",theEnvater);
+		return "envanter/envanter-form";
+		
+	}
+	
+	@PostMapping("/envanterKaydet")
+	public String envanterKaydet(@ModelAttribute("envanter") Envanter theEntity) 
+	{
+		DepoEnvanter depoEnvanter = new DepoEnvanter();
+		depoEnvanter.setDepoId(1);
+		theEntity.setDepoEnvanter(depoEnvanter);
+		service.save(theEntity);
+		return "redirect:/env/list-envanter";
+	}
+	
 	
 	@GetMapping("/list-depo")
 	public String listDepo(Model theModel) {

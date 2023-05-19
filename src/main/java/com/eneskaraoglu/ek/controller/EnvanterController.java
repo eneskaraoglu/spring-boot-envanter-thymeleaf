@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eneskaraoglu.ek.entity.Depo;
 import com.eneskaraoglu.ek.entity.DepoEnvanter;
@@ -52,6 +53,21 @@ public class EnvanterController {
 		depoEnvanter.setDepoId(1);
 		theEntity.setDepoEnvanter(depoEnvanter);
 		service.save(theEntity);
+		return "redirect:/env/list-envanter";
+	}
+	
+	@GetMapping("/updateEnvanterForm")
+	public String updateEnvanterForm(@RequestParam("envanterId") int envanterId,  Model theModel) {
+		Envanter theEnvater = service.findById(envanterId);
+		
+		theModel.addAttribute("envanter",theEnvater);
+		return "envanter/update-envanter-form";
+		
+	}
+	
+	@GetMapping("/deleteEnvanter")
+	public String deleteEnvanter(@RequestParam("envanterId") int envanterId,  Model theModel) {
+		service.deleteById(envanterId);
 		return "redirect:/env/list-envanter";
 	}
 	

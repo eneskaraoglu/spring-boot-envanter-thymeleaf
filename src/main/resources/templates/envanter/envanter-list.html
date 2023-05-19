@@ -24,6 +24,12 @@
 	<hr>
 	<a th:href="@{/env/addEnvanterForm}"
 		class="btn btn-primary btn-sm mb-3"> Envanter Ekle</a>
+		
+	<a th:href="@{/env/list-depo}"
+		class="btn btn-primary btn-sm mb-3"> Depo Listesi</a>
+		
+	<a th:href="@{/env/list-detail}"
+		class="btn btn-primary btn-sm mb-3"> Ürün Detaylar</a>
 
 	<table class="table table-bordered table-striped">
 		<thead class="table-dark">
@@ -32,6 +38,7 @@
 				<th>Envanter Kodu</th>
 				<th>Envanter Miktarı</th>
 				<th>Kritik Stok</th>
+				<th>İşlemler</th>
 			</tr>
 		</thead>
 
@@ -42,7 +49,13 @@
 				<td th:text="${envanter.envanterKodu}" />
 				<td th:text="${envanter.envanterMiktar}" />
 				<td th:text="${envanter.kritikMiktar}" />
-
+				<td><a
+					th:href="@{/env/updateEnvanterForm(envanterId=${envanter.envanterId})}"
+					class="btn btn-info btn-sm"> Güncelle </a> <a
+					th:href="@{/env/deleteEnvanter(envanterId=${envanter.envanterId})}"
+					class="btn btn-danger btn-sm"
+					onclick="if (!(confirm('Envanter silinecek,emin misiniz?'))) return false">
+						   Sil     </a></td>
 			</tr>
 		</tbody>
 	</table>

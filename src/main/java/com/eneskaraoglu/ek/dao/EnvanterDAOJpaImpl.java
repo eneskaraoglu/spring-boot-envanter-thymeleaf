@@ -34,7 +34,7 @@ public class EnvanterDAOJpaImpl implements EnvanterDAO {
 
 	@Override
 	public List<Envanter> findAll() {
-		TypedQuery<Envanter> theQuery = entityManager.createQuery(" from Envanter",
+		TypedQuery<Envanter> theQuery = entityManager.createQuery(" from Envanter order by envanterAdi ",
 				Envanter.class);
 		List<Envanter> result = theQuery.getResultList();
 		return result;
